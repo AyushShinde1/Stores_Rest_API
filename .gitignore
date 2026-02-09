@@ -1,0 +1,35 @@
+.vscode/
+*.pyc
+.idea/
+__pycache__/
+*.db
+.DS_Store
+venv/
+.venv/
+docs/docs/.nota/config.ini
+tree.txt
+.flaskenv
+
+
+# Python
+__pycache__/
+*.pyc
+.env
+venv/
+.env.*
+
+# Flask
+instance/
+*.db
+
+# Docker
+.pgdata/
+pgdata/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
