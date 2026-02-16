@@ -4,7 +4,7 @@ from flask_jwt_extended import jwt_required, get_jwt
 from sqlalchemy.exc import SQLAlchemyError
 
 from db import db
-from models import ItemModel
+from models import ItemModel, ItemImageModel
 from schemas import ItemSchema, ItemUpdateSchema
 
 blp = Blueprint("Items", "items", description="Operations on items")
@@ -57,12 +57,22 @@ class ItemList(MethodView):
     @blp.arguments(ItemSchema)
     @blp.response(201, ItemSchema)
     def post(self, item_data):
+        images_data = item_data.pop("images", [])
+
         item = ItemModel(**item_data)
 
         try:
             db.session.add(item)
             db.session.commit()
+
+            # Add images
+            for img in images_data:
+                image = ItemImageModel(item_id=item.id, **img)
+                db.session.add(image)
+            db.session.commit()
+
         except SQLAlchemyError:
+            db.session.rollback()
             abort(500, message="An error occurred while inserting the item.")
 
         return item
