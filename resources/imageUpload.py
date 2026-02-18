@@ -1,16 +1,20 @@
-from flask import Blueprint, request, jsonify
-import os,uuid
+import os, uuid
+from flask import request, jsonify
+from flask_smorest import Blueprint
 
-blp = Blueprint("Uploads", "uploads", description="Image uploads")
+from db import db
+from models import ItemImages
+
+blp = Blueprint("ImageUpload", "imageupload", description="Upload Item Images")
 
 UPLOAD_FOLDER = "uploads"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 @blp.route("/upload-image", methods=["POST"])
-def upload_image():
+def uploadImage():
     if "image" not in request.files:
-        return jsonify({"message": "No image provided"}), 400
-
+        return jsonify({"message":"No image provided"}), 400
+    
     file = request.files["image"]
     filename = f"{uuid.uuid4()}.jpg"
     filepath = os.path.join(UPLOAD_FOLDER, filename)

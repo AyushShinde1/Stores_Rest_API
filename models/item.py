@@ -8,8 +8,6 @@ class ItemModel(db.Model):
     name = db.Column(db.String(80), unique=False, nullable=False)
     price = db.Column(db.Float(precision=2), unique=False, nullable=False)
 
-    image_url = db.Column(db.String, nullable=True)
-
     store_id = db.Column(
         db.Integer, db.ForeignKey("stores.id"), unique=False, nullable=False
     )
@@ -17,4 +15,4 @@ class ItemModel(db.Model):
 
     tags = db.relationship("TagModel", back_populates="items", secondary="items_tags")
 
-    images = db.relationship("ItemImageModel", back_populates="items")
+    itemImages = db.relationship("ItemImages", back_populates="items")
