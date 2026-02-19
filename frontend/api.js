@@ -38,6 +38,41 @@ class StoresAPI {
         
         return response.json();
     }
+
+    async addItem(itemdetails) {
+        const response = await fetch(`${API_BASE}/item`,{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${this.getAuthToken()}`
+            },
+            body: JSON.stringify(itemdetails)
+        });
+
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.message || 'Fail To Add Item');
+        }
+
+        return response.json();
+    }
+
+    async addImage(imagedetails) {
+        const response = await fetch(`${API_BASE}/upload-image`,{
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${this.getAuthToken()}`
+            },
+            body: imagedetails
+        });
+
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.message || 'Failed to upload image');
+        }
+
+        return response.json();
+    }
     
     setAuthToken(token) {
         localStorage.setItem('access_token', token);

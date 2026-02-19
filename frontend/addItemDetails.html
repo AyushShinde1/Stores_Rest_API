@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width    =device-width, initial-scale=1.0">
+    <title>Add Item Details</title>     
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/addItemDetails.css">
+</head>
+<body>
+    <div>
+        <header class=home-header>
+            <h1><span style="display: none;">LOGO </span>Stores REST API</h1>
+            <nav>
+                <a href="/home.html">Logo (home.html)</a>
+                <a href="/login.html">Login</a>
+            </nav>
+        </header>
+        <main class="auth-form">
+            <h2>Store Information</h2>
+            <br>
+            <form id="addItem">
+                <div>
+                    <label for="storename">Store Name</label>
+                    <input type="text" id="storename" name="storename">
+                    <span class="error" id="storenameError"></span>
+                </div>
+                <br>
+                <h2>Item Information</h2>
+                <br>
+                <div>
+                    <label for="itemname">Item Name</label>
+                    <input type="text" id="itemname" name="itemname">
+                    <span class="error" id="itemnameError"></span>
+                </div>
+                <div>
+                    <label for="itemprice">Item Price</label>
+                    <input type="text" id="itemprice" name="itemprice">
+                    <span class="error" id="itempriceError"></span>
+                </div>
+                <div>
+                    <label for="itemimage">Item Image</label>
+                    <input type="file" id="itemimage" name="itemimage" accept="image/*">
+                    <span class="error" id="itemimageError"></span>
+                </div>
+                <div>
+                    <label for="imagedesc">Image Description</label>
+                    <input type="text" id="imagedesc" name="imagedesc" accept="image/*">
+                    <span class="error" id="imagedescError"></span>
+                </div>
+                <button type="submit" id="itemAddBtn">Add Item</button>
+            </form>
+        </main>
+    </div>
+    <script src="/api.js"></script>
+    <script src="/static/js/addItem.js"></script>
+</body>
+</html>

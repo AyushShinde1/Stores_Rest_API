@@ -20,7 +20,9 @@ class PlainTagSchema(Schema):
 class ItemImageSchema(Schema):
     id = fields.Int(dump_only=True)
     name = fields.Str()
-    img_description = fields.Str()
+    image_url = fields.Str(dump_only=True)
+    description = fields.Str()
+    item_id = fields.Int(required=True)
 
 
 class ItemSchema(PlainItemSchema):

@@ -9,6 +9,7 @@ venv/
 docs/docs/.nota/config.ini
 tree.txt
 .flaskenv
+uploads
 
 
 # Python

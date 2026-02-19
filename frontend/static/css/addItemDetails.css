@@ -1,0 +1,29 @@
+/* addItemDetails page layout */
+body {
+    display: block;
+}
+
+.page {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #eaeded; /* Amazon-like background */
+}
+
+/* Header for home (separate from auth header) */
+.home-header {
+    /* background-color: #cfe1f9; */
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid #fff;
+    border-radius: 10px;
+}
+
+.auth-form {
+    background: none;
+    padding: 10px 25rem;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
