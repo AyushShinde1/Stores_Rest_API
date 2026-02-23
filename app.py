@@ -1,5 +1,5 @@
 import os
-from flask import Flask, jsonify
+from flask import Flask, jsonify, send_from_directory
 from flask_smorest import Api
 from flask_jwt_extended import JWTManager
 from flask_migrate import Migrate
@@ -38,6 +38,8 @@ def create_app(db_url=None):
 
 
     jwt = JWTManager(app)
+
+    UPLOAD_FOLDER = "uploads" 
 
     # @jwt.additional_claims_loader
     # def add_claims_to_jwt(identity):
@@ -98,6 +100,10 @@ def create_app(db_url=None):
             ),
             401,
         )
+    
+    @app.route("/uploads/<path:filename>")
+    def uploaded_file(filename):
+        return send_from_directory("uploads", filename)
 
     api.register_blueprint(UserBlueprint)
     api.register_blueprint(ItemBlueprint)

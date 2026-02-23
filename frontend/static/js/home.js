@@ -36,13 +36,21 @@ document.addEventListener('DOMContentLoaded', async function() {
         grid.innerHTML = '';
 
         items.forEach(item => {
+            const firstImage = (item.itemImages && item.itemImages.length > 0) ? item.itemImages[0] : null;
+
+            // Your backend stores imageurl like: "uploads/<filename>.jpg" [file:1]
+            // We added Flask route /uploads/<filename>, so browser URL should be "/uploads/<filename>.jpg" [file:1]
+            const imageUrl = firstImage?.image_url ? `${firstImage.image_url}` : "";
+            const imageDesc = firstImage?.description ? firstImage.description : "No description"; 
+            console.log(imageUrl)
             const card = document.createElement('div');
             card.className = 'itemCard';
             card.innerHTML = `
-                <div class="itemImage"></div>
+                <div class="itemImage" style="background-image: url('${imageUrl}')"></div>
                 <div class="itemInfo">
                     <div class="itemName">${item.name}</div>
-                    <div class="itemPrice">₹${item.price}</div>
+                    <div class="itemPrice">${item.price}</div>
+                    <div class="itemImageDesc">${imageDesc}</div>
                 </div>
             `;
             grid.appendChild(card);

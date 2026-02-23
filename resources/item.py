@@ -2,6 +2,7 @@ from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 from flask_jwt_extended import jwt_required, get_jwt
 from sqlalchemy.exc import SQLAlchemyError
+from sqlalchemy.orm import joinedload
 
 from db import db
 from models import ItemModel
@@ -51,7 +52,16 @@ class ItemList(MethodView):
     @jwt_required()
     @blp.response(200, ItemSchema(many=True))
     def get(self):
-        return ItemModel.query.all()
+        #return ItemModel.query.all()
+        return (
+            ItemModel.query
+            .options(
+                joinedload(ItemModel.itemImages),
+                joinedload(ItemModel.store),
+                joinedload(ItemModel.tags),
+            )
+            .all()
+        )
 
     @jwt_required(fresh=True)
     @blp.arguments(ItemSchema)

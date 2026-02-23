@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add Store Details</title>
+
+  <link rel="stylesheet" href="static/css/style.css" />
+  <link rel="stylesheet" href="static/css/addItemDetails.css" />
+</head>
+
+<body>
+  <header class="home-header">
+    <h1><span style="display: none">LOGO</span>Stores REST API</h1>
+    <nav>
+      <a href="home.html">Logo home.html</a>
+      <a href="login.html">Login</a>
+    </nav>
+  </header>
+
+  <main class="auth-form">
+    <h2>Store Details</h2>
+    <br />
+
+    <form id="addStore">
+      <div>
+        <label for="storename">Store Name</label>
+        <!-- CHANGE #1: id must be "storename" (not "Storename") -->
+        <input type="text" id="storename" name="storename" />
+        <span class="error" id="storenameError"></span>
+      </div>
+
+      <div>
+        <label for="storeimage">Store Image</label>
+        <input type="file" id="storeimage" name="storeimage" accept="image/*" />
+        <span class="error" id="storeimageError"></span>
+      </div>
+
+      <div>
+        <label for="imagedesc">Image Description</label>
+        <input type="text" id="imagedesc" name="imagedesc" />
+        <span class="error" id="imagedescError"></span>
+      </div>
+
+      <div style="margin-top: 12px;">
+        <!-- CHANGE #2: button text -->
+        <button type="submit" id="storeAddBtn">Add Store</button>
+      </div>
+    </form>
+  </main>
+
+  <script src="api.js"></script>
+  <!-- CHANGE #3: load addstore.js (not addItem.js) -->
+  <script src="static/js/addstore.js"></script>
+</body>
+</html>

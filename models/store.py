@@ -9,6 +9,7 @@ class StoreModel(db.Model):
 
     tags = db.relationship("TagModel", back_populates="store", lazy="dynamic")
     items = db.relationship("ItemModel", back_populates="store", lazy="dynamic")
+    storeImages = db.relationship("StoreImages", back_populates="store", lazy="dynamic")
     '''
     Remember that if we don't use lazy equal dynamic, when we create a StoreModel
 

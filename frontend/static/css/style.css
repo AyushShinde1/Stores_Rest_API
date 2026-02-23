@@ -98,3 +98,11 @@ button:disabled { opacity: 0.7; cursor: not-allowed; }
 
 .alert-success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
 .alert-error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+
+.itemImageDesc {
+  font-size: 0.85rem;
+  color: #565959;
+  margin-top: 6px;
+  min-height: 18px;
+}
+    

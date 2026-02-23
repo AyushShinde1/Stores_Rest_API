@@ -25,10 +25,21 @@ class ItemImageSchema(Schema):
     item_id = fields.Int(required=True)
 
 
+class StoreImageSchema(Schema):
+    id = fields.Int(dump_only=True)
+    name = fields.Str(required=True)
+    image_url = fields.Str(dump_only=True)
+    description = fields.Str()
+    store_id = fields.Int(required=True)
+
+
+
 class ItemSchema(PlainItemSchema):
     store_id = fields.Int(required=True, load_only=True)
     store = fields.Nested(PlainStoreSchema(), dump_only=True)
     tags = fields.List(fields.Nested(PlainTagSchema()), dump_only=True)
+    
+    itemImages = fields.List(fields.Nested(ItemImageSchema()), dump_only=True)
 
 
 class ItemUpdateSchema(Schema):
@@ -39,6 +50,8 @@ class ItemUpdateSchema(Schema):
 class StoreSchema(PlainStoreSchema):
     items = fields.List(fields.Nested(PlainItemSchema()), dump_only=True)
     tags = fields.List(fields.Nested(PlainTagSchema()), dump_only=True)
+
+    storeImages = fields.List(fields.Nested(StoreImageSchema()), dump_only=True)
 
 
 class TagSchema(PlainTagSchema):

@@ -2,7 +2,7 @@
 .page {
     width: 100%;
     min-height: 100vh;
-    background-color: #eaeded; /* Amazon-like background */
+    /*background-color: #eaeded; *//* Amazon-like background */
 }
 
 /* Header for home (separate from auth header) */
