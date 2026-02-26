@@ -48,7 +48,8 @@ class ItemUpdateSchema(Schema):
 
 
 class StoreSchema(PlainStoreSchema):
-    items = fields.List(fields.Nested(PlainItemSchema()), dump_only=True)
+    #items = fields.List(fields.Nested(PlainItemSchema()), dump_only=True)
+    items = fields.List(fields.Nested(ItemSchema()), dump_only=True)
     tags = fields.List(fields.Nested(PlainTagSchema()), dump_only=True)
 
     storeImages = fields.List(fields.Nested(StoreImageSchema()), dump_only=True)

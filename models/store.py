@@ -7,9 +7,13 @@ class StoreModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), unique=True, nullable=False)
 
-    tags = db.relationship("TagModel", back_populates="store", lazy="dynamic")
-    items = db.relationship("ItemModel", back_populates="store", lazy="dynamic")
-    storeImages = db.relationship("StoreImages", back_populates="store", lazy="dynamic")
+    # tags = db.relationship("TagModel", back_populates="store", lazy="dynamic")
+    # items = db.relationship("ItemModel", back_populates="store", lazy="dynamic")
+    # storeImages = db.relationship("StoreImages", back_populates="store", lazy="dynamic")
+
+    tags = db.relationship("TagModel", back_populates="store")
+    items = db.relationship("ItemModel", back_populates="store")
+    storeImages = db.relationship("StoreImages", back_populates="store")
     '''
     Remember that if we don't use lazy equal dynamic, when we create a StoreModel
 

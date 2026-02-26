@@ -10,6 +10,12 @@ from schemas import ItemSchema, ItemUpdateSchema
 
 blp = Blueprint("Items", "items", description="Operations on items")
 
+@blp.route("/item/name/<string:name>")
+class StoreName(MethodView):
+    #@blp.response(200, StoreSchema)
+    def get(self, name):
+        item = ItemModel.query.filter_by(name=name).first_or_404()
+        return {"item":item.id}
 
 @blp.route("/item/<string:item_id>")
 class Item(MethodView):

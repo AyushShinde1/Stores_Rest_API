@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyStore - Stores REST API</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/style.css"> <!-- inherits -->
+    <link rel="stylesheet" href="static/css/mystore.css"> <!-- store-specific -->
+</head>
+<body>
+    <div class="page">
+        <!-- Store-specific header -->
+        <header class="mystory-header">
+            <div class="store-brand">
+                <!-- Store logo + name (populated by JS) -->
+                <img id="storeLogo" src="" alt="Store Logo" class="store-logo">
+                <span id="storeName" class="store-name">Loading...</span>
+            </div>
+            <div class="store-nav-right">
+                <span class="app-title">Stores REST API</span>
+                <nav>
+                    <a href="home.html">Home</a>
+                </nav>
+            </div>
+        </header>
+
+        <main class="home-main">
+            <!-- Tag sections rendered here -->
+            <div id="storeItemsGrid" class="itemsGrid"></div>
+            <div id="storeMessage" class="home-message"></div>
+        </main>
+    </div>
+
+    <script src="api.js"></script>
+    <script src="static/js/app.js"></script>
+    <script src="static/js/mystore.js"></script>
+</body>
+</html>

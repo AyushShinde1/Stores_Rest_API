@@ -22,16 +22,60 @@ document.addEventListener('DOMContentLoaded', async function() {
                 return;
             }
 
+            const storename = document.getElementById('storename')
+            let store_id;
+            let item_id;
+            
+            //Fetch store id using storename
+            try {
+                store_id = await api.getStoreId(storename.value);
+                console.log("Store ID is:", store_id);
+            } catch (err) {
+                // console.error("Error fetching store ID:", err.message);
+                const storenameError = document.getElementById('storenameError')
+                storenameError.innerHTML = 'Store not found. <a href="/addStoreDetails.html">Create New Store</a>'
+                throw new Error("Error fetching store ID:", err.message);
+            }
+
+            //Link Tag To Store
+            try {
+                const tagdetails = {
+                name: document.getElementById('tagname').value,
+                store_id: store_id
+                };
+
+                const response = await api.LinkTagToStore(tagdetails);
+                console.log("Tag linked successfully:", response);
+
+                
+            } catch (err) {
+                if (err.message.includes('A tag with that name already exists')) {
+                    console.warn("Tag already exists, skipping creation");
+
+                    const tagError = document.getElementById('tagError');
+                    tagError.textContent = "A tag with that name already exists.";
+                } else {
+                    console.error("Failed to create store tag link:", err.message);
+                    const tagError = document.getElementById('tagError');
+                    tagError.textContent = err.message || 'Fail To Create Store Tag Link';
+                    
+                    throw err;
+                }
+            }
+
+
+            //Add Item Details
             const btn = document.getElementById('itemAddBtn')
             const fileInput = document.getElementById('itemimage');
 
             const itemData = {
                 name: document.getElementById('itemname').value,
                 price: parseFloat(document.getElementById('itemprice').value),
-                store_id: 1
+                store_id: store_id
             };
 
             try {
+                console.log('Creating Item...')
                 btn.disabled = true; 
                 btn.textContent = 'Creating Item...';
 
@@ -47,7 +91,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                 } else {
                     itemjson = response; 
                 }
-                
+                item_id = itemjson.id
                 console.log('Item created:', itemjson);
 
                 if (!fileInput.files[0]) {
@@ -70,6 +114,26 @@ document.addEventListener('DOMContentLoaded', async function() {
                         const err = await imgresponse.json().catch(() => ({}));
                         throw new Error(err.message || 'Image upload failed');
                     }
+                }
+                
+                //Link Tag To Store
+                try {
+                    const tagname = document.getElementById('tagname')
+
+                    tag_id = await api.getTagId(tagname.value);
+
+                    const tagdetails = {
+                    item_id: item_id,
+                    tag_id: tag_id
+                    };
+
+                    const response = await api.LinkTagToItem(tagdetails);
+                } catch(err) {
+                    console.error("Failed to create Item tag link:", err.message);
+                    const tagError = document.getElementById('tagError');
+                    tagError.textContent = err.message || 'Fail To Create Item Tag Link';
+                    
+                    throw err;
                 }
 
                 alert(' Item & Image created successfully!');

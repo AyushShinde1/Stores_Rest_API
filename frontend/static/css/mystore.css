@@ -1,0 +1,148 @@
+/* MyStore page - inherits from style.css / HomeStyle.css patterns */
+
+/* Full page layout (overrides HomeStyle) */
+.page {
+    width: 100%;
+    min-height: 100vh;
+    /* background-color: #eaeded; Amazon-like background - commented out as requested */
+}
+
+/* Header for MyStore (separate store-specific header) */
+.mystory-header {
+    background-color: #131921;
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.07); /* Subtle shadow instead of gradient */
+}
+
+.mystory-header h1 {
+    font-size: 1.5rem;
+}
+
+.mystory-header nav a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 15px;
+    font-size: 0.9rem;
+}
+
+/* Store brand/logo area */
+.store-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.store-logo {
+    width: 48px;
+    height: 48px;
+    border-radius: 4px;
+    object-fit: cover;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+.store-name {
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+/* Store nav right side */
+.store-nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.app-title {
+    font-size: 1rem;
+    font-weight: 500;
+    opacity: 0.95;
+}
+
+/* Main content area */
+.home-main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 10px 40px;
+}
+
+.home-main h2 {
+    margin-bottom: 15px;
+}
+
+/* Grid of product cards */
+.itemsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+}
+
+/* Individual card */
+.itemCard {
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.07);
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.itemCard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+}
+
+/* Image area */
+.itemImage {
+    width: 100%;
+    padding-top: 75%; /* 4:3 aspect ratio */
+    background-color: #f7f7f7;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-bottom: 10px;
+}
+
+/* Text content */
+.itemInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.itemName {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #0f1111;
+    min-height: 40px;
+}
+
+.itemPrice {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #B12704;
+}
+
+/* Tag sections */
+.tagSection {
+    margin-top: 40px;
+}
+
+.tagSection h2 {
+    font-size: 1.4rem;
+    margin: 32px 0 20px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #ddd;
+}
+
+/* Optional message area */
+.home-message, #storeMessage {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #555;
+}
